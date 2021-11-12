@@ -1,7 +1,10 @@
 var express = require("express")
 var mongoose = require("mongoose")
 var app = express()
-//var bodyParser = require("body-parser")
+var http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
@@ -40,10 +43,15 @@ app.post('/messages', (req, res) => {
         if (err) {
             res.sendStatus(500);
         }
+        io.emit('message', req.body);
         res.sendStatus(200);
     })
 })
 
-var server = app.listen(3000, () => {
-    console.log("Running on port", server.address().port)
+io.on('connection', (socket) => {
+    console.log('a user is connected');
+})
+
+var s = server.listen(3000, () => {
+    console.log("Running on port", s.address().port)
 })

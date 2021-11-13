@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        .messages_input_wrapper {
+            display: inline-block;
+            height: 210px;
+            border-radius: 25px;
+            border: 1px solid #bcbdc0;
+            width: calc(100% - 160px);
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .send_message {
+            width: 140px;
+            height: 50px;
+            display: inline-block;
+            border-radius: 50px;
+            background-color: #a3d063;
+            border: 2px solid #a3d063;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s linear;
+            text-align: center;
+        }
+
+        .send_message:hover {
+            color: #a3d063;
+            background-color: #fff;
+        }
+    </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
@@ -18,20 +47,20 @@
 <body>
 <div class="container">
  <br>
- <div class="jumbotron">
- <h1 class="display-4">Send Message</h1>
- <br>
- <input id = "name" class="form-control" placeholder="Name">
- <br>
- <textarea id = "message" class="form-control" placeholder="Your Message Here">
-</textarea>
- <br>
- <button id="send" class= "btn btn-success">Send</button>
- </div>
  <div id="messages">
  
 </div>
+<div class="messages_input_wrapper">
+    <br>
+    <input id="name" class="form-control" placeholder="Name">
+    <br>
+    <input id="message" class="form-control" placeholder="Type your message here...">
+    </textarea>
+    <br>
+    <button id="send" class="send_message">Send</button>
 </div>
+</div>
+<br>
 <script>
     var socket = io();
     $(() => {
